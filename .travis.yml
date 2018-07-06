@@ -13,6 +13,6 @@ script:
   # update test app with given sdk branch
   - if [[ "$TRAVIS_BRANCH" == "master" ]]; then ./ios-pre-build-script.sh $SDK_BRANCH | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; fi
   # build test app and generate ipa
-  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then ./ios-on-build-script.sh $WORKSPACE_DIR $SCHEME_NAME | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; fi
+  # - if [[ "$TRAVIS_BRANCH" == "master" ]]; then ./ios-on-build-script.sh $WORKSPACE_DIR $SCHEME_NAME | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; fi
 after_success:
   - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
