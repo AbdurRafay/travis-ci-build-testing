@@ -242,7 +242,6 @@
 				3E2BC47820806B26007B5971 /* Frameworks */,
 				3E2BC47920806B26007B5971 /* Resources */,
 				6CA39326783666D962F478A1 /* [CP] Embed Pods Frameworks */,
-				F1E03E964FBD6482B61D6F39 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -346,21 +345,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSSDKe2e/Pods-iOSSDKe2e-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F1E03E964FBD6482B61D6F39 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSSDKe2e/Pods-iOSSDKe2e-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

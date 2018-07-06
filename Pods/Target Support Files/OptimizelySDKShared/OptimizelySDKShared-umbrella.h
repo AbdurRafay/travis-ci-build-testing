@@ -15,6 +15,7 @@
 #import "OPTLYClientBuilder.h"
 #import "OPTLYDatabase.h"
 #import "OPTLYDatabaseEntity.h"
+#import "OPTLYDatafileConfig.h"
 #import "OPTLYDatafileManagerBasic.h"
 #import "OPTLYDataStore.h"
 #import "OPTLYEventDataStore.h"
