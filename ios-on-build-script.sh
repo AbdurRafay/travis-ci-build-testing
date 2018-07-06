@@ -11,7 +11,7 @@ IPA_DIR="${ROOT_DIR}/${SCHEME_NAME}.ipa"
 
 rm -rf $RELEASE_DIR
 
-xcodebuild -workspace $WORKSPACE_DIR -scheme $SCHEME_NAME -configuration $CONFIGURATION -destination $DESTINATION CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO SYMROOT=$ROOT_DIR clean build
+xcodebuild -workspace $WORKSPACE_DIR -scheme $SCHEME_NAME -configuration $CONFIGURATION -destination $DESTINATION CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO SYMROOT=$ROOT_DIR clean build | xcpretty
 
 rm -rf $PAYLOAD_DIR
 mkdir -p $PAYLOAD_DIR

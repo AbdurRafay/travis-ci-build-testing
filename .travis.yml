@@ -7,13 +7,15 @@ env:
   matrix:
     - $SDK_BRANCH=master WORKSPACE_DIR=iOSSDKe2e.xcworkspace SCHEME_NAME=iOSSDKe2e
 before_install: 
+before_install:
+    - gem install cocoapods                       # Since Travis is not always on latest version
+    - pod install
 addons:
   srcclr: true
 script:
-  - pod install
   # update test app with given sdk branch
   # - if [[ "$TRAVIS_BRANCH" == "master" ]]; then pod install | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; fi
   # build test app and generate ipa
-  # - if [[ "$TRAVIS_BRANCH" == "master" ]]; then ./ios-on-build-script.sh $WORKSPACE_DIR $SCHEME_NAME | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; fi
+  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then ./ios-on-build-script.sh $WORKSPACE_DIR $SCHEME_NAME | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; fi
 after_success:
   - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
