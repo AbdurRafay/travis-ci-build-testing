@@ -1,0 +1,39 @@
+PODS:
+  - OptimizelySDKCore (2.0.1)
+  - OptimizelySDKDatafileManager (2.0.1):
+    - OptimizelySDKShared (= 2.0.1)
+  - OptimizelySDKEventDispatcher (2.0.1):
+    - OptimizelySDKShared (= 2.0.1)
+  - OptimizelySDKiOS (2.0.1):
+    - OptimizelySDKDatafileManager (= 2.0.1)
+    - OptimizelySDKEventDispatcher (= 2.0.1)
+    - OptimizelySDKUserProfileService (= 2.0.1)
+  - OptimizelySDKShared (2.0.1):
+    - OptimizelySDKCore (= 2.0.1)
+  - OptimizelySDKUserProfileService (2.0.1):
+    - OptimizelySDKShared (= 2.0.1)
+
+DEPENDENCIES:
+  - OptimizelySDKiOS (from `https://github.com/optimizely/objective-c-sdk.git`, branch `master`)
+
+EXTERNAL SOURCES:
+  OptimizelySDKiOS:
+    :branch: master
+    :git: https://github.com/optimizely/objective-c-sdk.git
+
+CHECKOUT OPTIONS:
+  OptimizelySDKiOS:
+    :commit: 82cc544f7bebe5f08945777567f78b863fca5e36
+    :git: https://github.com/optimizely/objective-c-sdk.git
+
+SPEC CHECKSUMS:
+  OptimizelySDKCore: 5b2fb58afe66bf84d2bb83c87d710ccd952c1d85
+  OptimizelySDKDatafileManager: 772f151ff42202c22a318cca7bd7b57d9e806661
+  OptimizelySDKEventDispatcher: 09895c59cadd66d97047864d2a41e53809c062d1
+  OptimizelySDKiOS: a3a210d9f0c7e73845b05dcf0e45320319b3b620
+  OptimizelySDKShared: 86de632c11dde538109e900b78822fb7af0bbd9b
+  OptimizelySDKUserProfileService: aeb49c76df7a2ea950aa5087efa2a5f02720207e
+
+PODFILE CHECKSUM: fa2f2441e3eb05c9856ecb9d9195aa2e925b550b
+
+COCOAPODS: 1.4.0
