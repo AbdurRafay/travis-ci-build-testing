@@ -4,7 +4,7 @@ DIRECTORY=$(cd `dirname $0` && pwd)
 # echo "${DIRECTORY}"
 # cd $DIRECTORY
 
-git reset --hard
+# git reset --hard
 
 sed -i '' "s~\'master\'~'${SDK_BRANCH}'~g" 'Podfile'
 
