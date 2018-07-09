@@ -5,11 +5,10 @@ branches:
     - master
 env:
   matrix:
-    - SDK_BRANCH=master WORKSPACE_DIR=iOSSDKe2e.xcworkspace SCHEME_NAME=iOSSDKe2e 
-before_install: 
+    - SDK_BRANCH=master WORKSPACE_DIR=iOSSDKe2e.xcworkspace SCHEME_NAME=iOSSDKe2e CONFIGURATION="Release" DESTINATION="generic/platform=iOS" DIRECTORY=$(cd `dirname $0` && pwd) ROOT_DIR="${DIRECTORY}/build" RELEASE_DIR="${ROOT_DIR}/${CONFIGURATION}-iphoneos" PAYLOAD_DIR="${ROOT_DIR}/Payload" APP_DIR="${RELEASE_DIR}/${SCHEME_NAME}.app" IPA_DIR="${ROOT_DIR}/${SCHEME_NAME}.ipa"
 before_install:
-    - gem install cocoapods                       # Since Travis is not always on latest version
-    - pod install --repo-update
+    # - gem install cocoapods                       # Since Travis is not always on latest version
+    # - pod install --repo-update
 addons:
   srcclr: true
 script:
@@ -17,7 +16,8 @@ script:
   # - if [[ "$TRAVIS_BRANCH" == "master" ]]; then pod install | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; fi
   # build test app and generate ipa
   # - if [[ "$TRAVIS_BRANCH" == "master" ]]; then 
-  - ./ios-on-build-script.sh $WORKSPACE_DIR $SCHEME_NAME | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; 
+  # - ./ios-on-build-script.sh $WORKSPACE_DIR $SCHEME_NAME | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; 
   # fi
+  - xcodebuild -workspace $WORKSPACE_DIR -scheme $SCHEME_NAME -configuration $CONFIGURATION -destination $DESTINATION CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO SYMROOT=$ROOT_DIR clean build | xcpretty
 after_success:
   - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
