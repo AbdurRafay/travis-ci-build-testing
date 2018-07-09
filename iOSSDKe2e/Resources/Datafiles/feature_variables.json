@@ -1,0 +1,103 @@
+{
+  "accountId": "2692180134",
+  "anonymizeIP": true,
+  "attributes": [],
+  "audiences": [],
+  "events": [],
+  "experiments": [
+    {
+      "audienceIds": [],
+      "forcedVariations": {
+      },
+      "id": "2698060076",
+      "key": "feature_running_exp",
+      "layerId": "2696280072",
+      "status": "Running",
+      "trafficAllocation": [
+        {
+          "endOfRange": 10000,
+          "entityId": "2688510106"
+        }
+      ],
+      "variations": [
+        {
+          "featureEnabled": true,
+          "id": "2693550078",
+          "key": "var_feature_enabled_no_override",
+          "variables": []
+        },
+        {
+          "featureEnabled": false,
+          "id": "2693550077",
+          "key": "var_feature_disabled",
+          "variables": []
+        },
+        {
+          "featureEnabled": true,
+          "id": "2688510106",
+          "key": "var_feature_enabled",
+          "variables": [
+            {
+              "value": "4",
+              "id": "2687470094"
+            },
+            {
+              "value": "10.6",
+              "id": "2689280164"
+            },
+            {
+              "value": "false",
+              "id": "2689660111"
+            },
+            {
+              "value": "s1",
+              "id": "2696150065"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "featureFlags": [
+    {
+      "experimentIds": [
+        "2698060076"
+      ],
+      "id": "2692620110",
+      "key": "feature_running",
+      "rolloutId": "",
+      "variables": [
+        {
+          "defaultValue": "3",
+          "id": "2687470094",
+          "key": "i",
+          "type": "integer"
+        },
+        {
+          "defaultValue": "10.5",
+          "id": "2689280164",
+          "key": "d",
+          "type": "double"
+        },
+        {
+          "defaultValue": "true",
+          "id": "2689660111",
+          "key": "b",
+          "type": "boolean"
+        },
+        {
+          "defaultValue": "s",
+          "id": "2696150065",
+          "key": "s",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "groups": [],
+  "projectId": "2692180134",
+  "revision": "34",
+  "rollouts": [],
+  "variables": [],
+  "version": "4"
+}

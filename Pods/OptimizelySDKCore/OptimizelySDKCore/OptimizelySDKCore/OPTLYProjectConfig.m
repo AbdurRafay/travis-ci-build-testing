@@ -30,6 +30,8 @@
 #import "OPTLYVariation.h"
 #import "OPTLYFeatureFlag.h"
 #import "OPTLYRollout.h"
+// Live Variables (DEPRECATED)
+#import "OPTLYVariable.h"
 
 NSString * const kExpectedDatafileVersion  = @"4";
 
@@ -48,6 +50,9 @@ NSString * const kExpectedDatafileVersion  = @"4";
 //@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, NSString *>><Ignore> *forcedVariationMap;
 //    userId --> experimentId --> variationId
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableDictionary *><Ignore> *forcedVariationMap;
+
+// Live Variables (DEPRECATED)
+@property (nonatomic, strong) NSDictionary<NSString *, OPTLYVariable *><Ignore> *variableKeyToVariableMap;
 
 @end
 
@@ -113,6 +118,12 @@ NSString * const kExpectedDatafileVersion  = @"4";
             [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
         }
         
+        if (projectConfig.anonymizeIP == nil) {
+            NSString *logMessage = @"Forcing old datafile to include anonymizeIP required by V4 format.";
+            [builder.logger logMessage:logMessage withLevel:OptimizelyLogLevelWarning];
+            projectConfig.anonymizeIP = @1;
+        }
+
         if (datafileError)
         {
             NSError *error = [NSError errorWithDomain:OPTLYErrorHandlerMessagesDomain
@@ -242,6 +253,16 @@ NSString * const kExpectedDatafileVersion  = @"4";
         [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
     }
     return rollout;
+}
+
+// Live Variables (DEPRECATED)
+- (OPTLYVariable *)getVariableForVariableKey:(NSString *)variableKey {
+    OPTLYVariable *variable = self.variableKeyToVariableMap[variableKey];
+    if (!variable) {
+        NSString *logMessage = [NSString stringWithFormat:OPTLYLoggerMessagesVariableUnknownForVariableKey, variableKey];
+        [self.logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
+    }
+    return variable;
 }
 
 #pragma mark -- Forced Variation Methods --
@@ -396,6 +417,14 @@ NSString * const kExpectedDatafileVersion  = @"4";
     return _groupIdToGroupMap;
 }
 
+// Live Variables (DEPRECATED)
+- (NSDictionary<NSString *, OPTLYVariable *> *)variableKeyToVariableMap {
+    if (!_variableKeyToVariableMap) {
+        _variableKeyToVariableMap = [self generateVariableKeyToVariableMap];
+    }
+    return _variableKeyToVariableMap;
+}
+
 //- (NSMutableDictionary<NSString *, NSMutableDictionary<NSString *, NSString *>> *)forcedVariationMap {
 - (NSMutableDictionary<NSString *, NSMutableDictionary *> *)forcedVariationMap {
     @synchronized (self) {
@@ -515,6 +544,15 @@ NSString * const kExpectedDatafileVersion  = @"4";
         map[rollout.rolloutId] = rollout;
     }
     
+    return [NSDictionary dictionaryWithDictionary:map];
+}
+
+// Live Variables (DEPRECATED)
+- (NSDictionary<NSString *, OPTLYVariable *> *)generateVariableKeyToVariableMap {
+    NSMutableDictionary *map = [[NSMutableDictionary alloc] init];
+    for (OPTLYVariable *variable in self.variables) {
+        map[variable.variableKey] = variable;
+    }
     return [NSDictionary dictionaryWithDictionary:map];
 }
 

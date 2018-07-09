@@ -5,15 +5,25 @@ branches:
     - master
 env:
   matrix:
-    - WORKSPACE_DIR=iOSSDKe2e.xcworkspace SCHEME_NAME=iOSSDKe2e
-before_install: 
-addons:
-  srcclr: true
+    - CUSTOM_ID=MyiOSApp SDK_BRANCH=master WORKSPACE_DIR=iOSSDKe2e.xcworkspace SCHEME_NAME=iOSSDKe2e CONFIGURATION="Release" DESTINATION="generic/platform=iOS" DIRECTORY=$(cd `dirname $0` && pwd) ROOT_DIR="${DIRECTORY}/build" RELEASE_DIR="${ROOT_DIR}/${CONFIGURATION}-iphoneos" PAYLOAD_DIR="${ROOT_DIR}/Payload" APP_DIR="${RELEASE_DIR}/${SCHEME_NAME}.app" IPA_DIR="${ROOT_DIR}/${SCHEME_NAME}.ipa"
+before_install:
+    - gem install cocoapods                       # Since Travis is not always on latest version
+    - pod install --repo-update
 script:
-  - pod spec lint --quick
-  # update test app with given sdk branch
-  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then ./ios-pre-build-script.sh $SDK_BRANCH | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; fi
-  # build test app and generate ipa
-  - if [[ "$TRAVIS_BRANCH" == "master" ]]; then ./ios-on-build-script.sh $WORKSPACE_DIR $SCHEME_NAME | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; fi
+  - rm -rf $RELEASE_DIR
+  - xcodebuild -workspace $WORKSPACE_DIR -scheme $SCHEME_NAME -configuration $CONFIGURATION -destination $DESTINATION CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO SYMROOT=$ROOT_DIR clean build | xcpretty
+  - rm -rf $PAYLOAD_DIR
+  - mkdir -p $PAYLOAD_DIR
+  # Copy .app file from the build directory to the Payload directory
+  - cp -R $APP_DIR $PAYLOAD_DIR
+  - cd $ROOT_DIR
+  - zip -r -X ${SCHEME_NAME}.ipa "Payload"
+  - cd $DIRECTORY
+  - rm -rf $RELEASE_DIR
+  - rm -rf $PAYLOAD_DIR
+  - echo "${IPA_DIR}"
 after_success:
-  - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
+  - sleep 5                                       # https://github.com/travis-ci/travis-ci/issues/4725
+deploy:
+  script: >-
+  curl -u "abdur6:idDAtzytnCPk23sebAyP" -X POST "https://api-cloud.browserstack.com/app-automate/upload" -F "file=@${IPA_DIR}" -F 'data={"custom_id": "${CUSTOM_ID}"}'

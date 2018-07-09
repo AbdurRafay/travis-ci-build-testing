@@ -22,7 +22,6 @@
 		3E2BC55D2080775D007B5971 /* TestWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BC55C2080775D007B5971 /* TestWorker.swift */; };
 		3E2BC55F208077DB007B5971 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2BC55E208077DB007B5971 /* Test.swift */; };
 		3E333FE120A0B76400DF803D /* OPTLYEventDispatcherProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E333FE020A0B76400DF803D /* OPTLYEventDispatcherProxy.swift */; };
-		3EA0F6B120DA492A00C7E356 /* Datafiles in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0F6B020DA492A00C7E356 /* Datafiles */; };
 		3EB4ECE9208F583900AFFA85 /* OptimizelyWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4ECE8208F583900AFFA85 /* OptimizelyWorker.swift */; };
 		3EB4ECFB2090C4B000AFFA85 /* InputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4ECF82090C4B000AFFA85 /* InputVC.swift */; };
 		3EB4ECFC2090C4B000AFFA85 /* InputRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4ECF92090C4B000AFFA85 /* InputRouter.swift */; };
@@ -30,6 +29,7 @@
 		3EB4ED0220930A1300AFFA85 /* OutputRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4ECFF20930A1200AFFA85 /* OutputRouter.swift */; };
 		3EB4ED0320930A1300AFFA85 /* OutputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4ED0020930A1200AFFA85 /* OutputVC.swift */; };
 		3EB4ED0420930A1300AFFA85 /* OutputVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4ED0120930A1200AFFA85 /* OutputVM.swift */; };
+		90855D2A20EF7F7600A97BEC /* Datafiles in Resources */ = {isa = PBXBuildFile; fileRef = 90855D2920EF7F7500A97BEC /* Datafiles */; };
 		D29D004F31BF4F760F02FE8C /* Pods_iOSSDKe2e.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12852461AA885C3B0301101 /* Pods_iOSSDKe2e.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,7 +52,6 @@
 		3E2BC55C2080775D007B5971 /* TestWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestWorker.swift; sourceTree = "<group>"; };
 		3E2BC55E208077DB007B5971 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		3E333FE020A0B76400DF803D /* OPTLYEventDispatcherProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPTLYEventDispatcherProxy.swift; sourceTree = "<group>"; };
-		3EA0F6B020DA492A00C7E356 /* Datafiles */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Datafiles; path = ../../../Datafiles; sourceTree = "<group>"; };
 		3EB4ECE8208F583900AFFA85 /* OptimizelyWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptimizelyWorker.swift; sourceTree = "<group>"; };
 		3EB4ECF82090C4B000AFFA85 /* InputVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputVC.swift; sourceTree = "<group>"; };
 		3EB4ECF92090C4B000AFFA85 /* InputRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputRouter.swift; sourceTree = "<group>"; };
@@ -60,6 +59,7 @@
 		3EB4ECFF20930A1200AFFA85 /* OutputRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputRouter.swift; sourceTree = "<group>"; };
 		3EB4ED0020930A1200AFFA85 /* OutputVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputVC.swift; sourceTree = "<group>"; };
 		3EB4ED0120930A1200AFFA85 /* OutputVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputVM.swift; sourceTree = "<group>"; };
+		90855D2920EF7F7500A97BEC /* Datafiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Datafiles; sourceTree = "<group>"; };
 		B12852461AA885C3B0301101 /* Pods_iOSSDKe2e.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSSDKe2e.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB656F06C34D65FCA71F063 /* Pods-iOSSDKe2e.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSSDKe2e.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOSSDKe2e/Pods-iOSSDKe2e.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,7 +160,7 @@
 		3E2BC4CB20806C88007B5971 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3EA0F6B020DA492A00C7E356 /* Datafiles */,
+				90855D2920EF7F7500A97BEC /* Datafiles */,
 				3E2BC4D020806C89007B5971 /* Storyboards */,
 				3E2BC4D920806C89007B5971 /* Images */,
 			);
@@ -242,7 +242,6 @@
 				3E2BC47820806B26007B5971 /* Frameworks */,
 				3E2BC47920806B26007B5971 /* Resources */,
 				6CA39326783666D962F478A1 /* [CP] Embed Pods Frameworks */,
-				F1E03E964FBD6482B61D6F39 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -294,7 +293,7 @@
 			files = (
 				3E2BC52C20806C89007B5971 /* Main.storyboard in Resources */,
 				3E2BC52B20806C89007B5971 /* LaunchScreen.storyboard in Resources */,
-				3EA0F6B120DA492A00C7E356 /* Datafiles in Resources */,
+				90855D2A20EF7F7600A97BEC /* Datafiles in Resources */,
 				3E2BC53020806C89007B5971 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,21 +345,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSSDKe2e/Pods-iOSSDKe2e-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F1E03E964FBD6482B61D6F39 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iOSSDKe2e/Pods-iOSSDKe2e-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

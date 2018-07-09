@@ -14,46 +14,37 @@
  * limitations under the License.                                           *
  ***************************************************************************/
 
+#import <Foundation/Foundation.h>
 #ifdef UNIVERSAL
-    #import "Optimizely.h"
-    #import "OPTLYLogger.h"
+    #import "OPTLYJSONModelLib.h"
 #else
-    #import <OptimizelySDKCore/Optimizely.h>
-    #import <OptimizelySDKCore/OPTLYLogger.h>
+    #import <OptimizelySDKCore/OPTLYJSONModelLib.h>
 #endif
-#import "OPTLYClientBuilder.h"
 
-@implementation OPTLYClientBuilder: NSObject
+/**
+ * This class is a representation of an Optimizely live variable scoped within a variation:
+ * "variations": [
+ *           {
+ *             "id": "6451680205",
+ *             "key": "a",
+ *             "variables": [
+ *               {
+ *                 "id": "73483201090",
+ *                 "value": "testValue"
+ *               },
+ *               ...
+ *               ]
+ *           }
+ */
 
-+ (instancetype)builderWithBlock:(OPTLYClientBuilderBlock)block {
-    return [[self alloc] initWithBlock:block];
-}
+@protocol OPTLYVariationVariable
+@end
 
-- (id)init {
-    return [self initWithBlock:nil];
-}
+@interface OPTLYVariationVariable : OPTLYJSONModel
 
-- (id)initWithBlock:(OPTLYClientBuilderBlock)block {
-    self = [super init];
-    if (self) {
-        if (block != nil) {
-            block(self);
-        }
-        _optimizely = [Optimizely init:^(OPTLYBuilder *builder) {
-            builder.datafile = self->_datafile;
-            builder.errorHandler = self->_errorHandler;
-            builder.eventDispatcher = self->_eventDispatcher;
-            builder.logger = self->_logger;
-            builder.userProfileService = self->_userProfileService;
-            builder.clientEngine = self->_clientEngine;
-            builder.clientVersion = self->_clientVersion;
-        }];
-        _logger = _optimizely.logger;
-        if (!_logger) {
-            _logger = [[OPTLYLoggerDefault alloc] initWithLogLevel:OptimizelyLogLevelAll];
-        }
-    }
-    return self;
-}
+/// The variable's ID.
+@property (nonatomic, strong) NSString *variableId;
+/// The variable's assigned value within that variation
+@property (nonatomic, strong) NSString *value;
 
 @end

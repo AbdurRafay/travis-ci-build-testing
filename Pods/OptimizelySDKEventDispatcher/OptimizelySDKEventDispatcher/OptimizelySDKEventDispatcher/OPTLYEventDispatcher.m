@@ -23,8 +23,10 @@
 // TODO - Flush events when network connection has become available.
 
 // --- Event URLs ----
-NSString * const OPTLYEventDispatcherImpressionEventURL   = @"https://logx.optimizely.com/log/decision";
-NSString * const OPTLYEventDispatcherConversionEventURL   = @"https://logx.optimizely.com/log/event";
+NSString * const OPTLYEventDispatcherEventsURL   = @"https://logx.optimizely.com/v1/events";
+
+NSString * const oldOPTLYEventDispatcherImpressionEventURL   = @"https://logx.optimizely.com/log/decision";
+NSString * const oldOPTLYEventDispatcherConversionEventURL   = @"https://logx.optimizely.com/log/event";
 
 // Default interval and timeout values (in s) if not set by users
 const NSInteger OPTLYEventDispatcherDefaultDispatchIntervalTime_s = 0;
@@ -125,27 +127,26 @@ dispatch_queue_t dispatchEventQueue()
 // The timer must be dispatched on the main thread.
 - (void)setupNetworkTimer:(void(^)(void))completion
 {
+    __weak typeof(self) weakSelf = self;
     dispatch_block_t block = ^{
-        if (self.eventDispatcherDispatchInterval > 0) {
-            self.timer = [NSTimer scheduledTimerWithTimeInterval:self.eventDispatcherDispatchInterval
-                                                          target:self
-                                                        selector:@selector(flushEvents)
-                                                        userInfo:nil
-                                                         repeats:YES];
-            
-            NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled, self.eventDispatcherDispatchInterval];
-            [_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
-            
+        typeof(self) strongSelf = weakSelf;
+        if (!strongSelf) return;
+        if (strongSelf.eventDispatcherDispatchInterval > 0) {
+            strongSelf.timer = [NSTimer scheduledTimerWithTimeInterval:self.eventDispatcherDispatchInterval
+                                                                target:self
+                                                              selector:@selector(flushEvents)
+                                                              userInfo:nil
+                                                               repeats:YES];
+            NSString *logMessage =  [NSString stringWithFormat: OPTLYLoggerMessagesEventDispatcherNetworkTimerEnabled, weakSelf.eventDispatcherDispatchInterval];
+            [strongSelf->_logger logMessage:logMessage withLevel:OptimizelyLogLevelDebug];
             if (completion) {
                 completion();
             }
         }
     };
-    
     if ([NSThread isMainThread]) {
         block();
-    }
-    else {
+    } else {
         dispatch_async(dispatch_get_main_queue(), block);
     }
 }
@@ -207,6 +208,16 @@ dispatch_queue_t dispatchEventQueue()
     }];
 }
 
+// A saved event has entityId and json in its dictionary so that it can be deleted by entityId
+- (bool)isSavedEvent:(nonnull NSDictionary *)event {
+    return event[@"json"] != nil;
+}
+// It is an old single point event if it contains clientEngine. So, send it to the appropriate endpoint.
+// This may not be necessary but just in case there are some old events in the queue.
+- (bool)isOldEvent:(nonnull NSDictionary *)event {
+    return [self isSavedEvent:event] && event[@"json"][@"clientEngine"] != nil;
+}
+
 - (void)dispatchEvent:(nonnull NSDictionary *)event
          backoffRetry:(BOOL)backoffRetry
             eventType:(OPTLYDataStoreEventType)eventType
@@ -228,9 +239,10 @@ dispatch_queue_t dispatchEventQueue()
             [self.pendingDispatchEvents addObject:event];
         }
         
-        NSURL *url = [self URLForEvent:eventType];
+        NSURL *url = [self isOldEvent:event] ? [self oldURLForEvent:eventType] : [self URLForEvent:eventType];
 
-        NSDictionary *eventToSend = event[@"json"] == nil ? event : event[@"json"];
+        NSDictionary *eventToSend = [self isSavedEvent:event] ? event[@"json"] : event;
+        
         __weak typeof(self) weakSelf = self;
         [self.networkService dispatchEvent:eventToSend
                               backoffRetry:backoffRetry
@@ -465,14 +477,29 @@ dispatch_queue_t dispatchEventQueue()
     return numberOfImpressionEventsSaved + numberOfConversionEventsSaved;
 }
 
+- (NSURL *)oldURLForEvent:(OPTLYDataStoreEventType)eventType {
+    NSURL *url = nil;
+    switch(eventType) {
+        case OPTLYDataStoreEventTypeImpression:
+            url = [NSURL URLWithString:oldOPTLYEventDispatcherImpressionEventURL];
+            break;
+        case OPTLYDataStoreEventTypeConversion:
+            url = [NSURL URLWithString:oldOPTLYEventDispatcherConversionEventURL];
+            break;
+        default:
+            break;
+    }
+    return url;
+}
+
 - (NSURL *)URLForEvent:(OPTLYDataStoreEventType)eventType {
     NSURL *url = nil;
     switch(eventType) {
         case OPTLYDataStoreEventTypeImpression:
-            url = [NSURL URLWithString:OPTLYEventDispatcherImpressionEventURL];
+            url = [NSURL URLWithString:OPTLYEventDispatcherEventsURL];
             break;
         case OPTLYDataStoreEventTypeConversion:
-            url = [NSURL URLWithString:OPTLYEventDispatcherConversionEventURL];
+            url = [NSURL URLWithString:OPTLYEventDispatcherEventsURL];
             break;
         default:
             break;
