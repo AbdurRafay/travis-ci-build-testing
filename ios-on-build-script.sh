@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # WORKSPACE_DIR=$1	 			#"testApp/iOSSDKe2e/iOSSDKe2e.xcworkspace"
 # SCHEME_NAME=$2 					#"iOSSDKe2e"
 # CONFIGURATION="Release"
