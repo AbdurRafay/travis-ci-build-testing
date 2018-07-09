@@ -21,7 +21,7 @@ script:
   # - cd $DIRECTORY
   # - rm -rf $RELEASE_DIR
   # - rm -rf $PAYLOAD_DIR
-  - echo "${IPA_DIR}"
-  - ios-on-build-script.sh $IPA_DIR $CUSTOM_ID
+  - echo "${DIRECTORY}"
+  - ${DIRECTORY}/ios-on-build-script.sh $IPA_DIR $CUSTOM_ID
 after_success:
   - sleep 2                                       # https://github.com/travis-ci/travis-ci/issues/4725
