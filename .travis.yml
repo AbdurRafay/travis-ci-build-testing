@@ -25,5 +25,5 @@ script:
 after_success:
   - sleep 2                                       # https://github.com/travis-ci/travis-ci/issues/4725
 deploy:
-  script:
-  "curl -u "abdur6:idDAtzytnCPk23sebAyP" -X POST "https://api-cloud.browserstack.com/app-automate/upload" -F "file=@${IPA_DIR}" -F 'data={"custom_id": "${CUSTOM_ID}"}'"
+  provider: script
+  script: bash ios-on-build-script.sh $IPA_DIR $CUSTOM_ID
