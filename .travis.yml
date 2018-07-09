@@ -18,6 +18,17 @@ script:
   # - if [[ "$TRAVIS_BRANCH" == "master" ]]; then 
   # - ./ios-on-build-script.sh $WORKSPACE_DIR $SCHEME_NAME | egrep -B 10 -A 10 "(error|warning|failed|crash|exit|FAILED|Failing|failures)"; 
   # fi
+  - rm -rf $RELEASE_DIR
   - xcodebuild -workspace $WORKSPACE_DIR -scheme $SCHEME_NAME -configuration $CONFIGURATION -destination $DESTINATION CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO SYMROOT=$ROOT_DIR clean build | xcpretty
+  - rm -rf $PAYLOAD_DIR
+  - mkdir -p $PAYLOAD_DIR
+  # # Copy .app file from the build directory to the Payload directory
+  - cp -R $APP_DIR $PAYLOAD_DIR
+  - cd $ROOT_DIR
+  - zip -r -X ${SCHEME_NAME}.ipa "Payload"
+  - cd $DIRECTORY
+  - rm -rf $RELEASE_DIR
+  - rm -rf $PAYLOAD_DIR
+  - echo "${IPA_DIR}"
 after_success:
   - sleep 5 # https://github.com/travis-ci/travis-ci/issues/4725
