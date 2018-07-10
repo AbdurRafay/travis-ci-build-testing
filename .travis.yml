@@ -23,6 +23,6 @@ script:
   - rm -rf $RELEASE_DIR
   - rm -rf $PAYLOAD_DIR
   - echo "${IPA_DIR}"
-  - "curl -u abdur6:idDAtzytnCPk23sebAyP -X POST https://api-cloud.browserstack.com/app-automate/upload -F file=@${IPA_DIR} -F 'data={custom_id: ${CUSTOM_ID}}'"
+  - "curl -u abdur6:idDAtzytnCPk23sebAyP -X POST https://api-cloud.browserstack.com/app-automate/upload -F file=@${IPA_DIR} -F data={custom_id: ${CUSTOM_ID}}"
 after_success:
   - sleep 2                                       # https://github.com/travis-ci/travis-ci/issues/4725
