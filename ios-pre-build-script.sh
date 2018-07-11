@@ -17,7 +17,7 @@ body='{
 		"branch":"master",
 		"config": {
 			"env": {
-				"matrix": ["CUSTOM_ID=MyiOSApp SDK_BRANCH=master WORKSPACE_DIR=iOSSDKe2e.xcworkspace SCHEME_NAME=iOSSDKe2e CONFIGURATION=\"Release\" DESTINATION=\"generic/platform=iOS\" DIRECTORY=$(cd `dirname $0` && pwd) ROOT_DIR=\"${DIRECTORY}/build\" RELEASE_DIR=\"${ROOT_DIR}/${CONFIGURATION}-iphoneos\" PAYLOAD_DIR=\"${ROOT_DIR}/Payload\" APP_DIR=\"${RELEASE_DIR}/${SCHEME_NAME}.app\" IPA_DIR=\"${ROOT_DIR}/${SCHEME_NAME}.ipa\""]
+				"matrix": ["SDK_BRANCH=master WORKSPACE_DIR=iOSSDKe2e.xcworkspace SCHEME_NAME=iOSSDKe2e CONFIGURATION="Release" DESTINATION="generic/platform=iOS" DIRECTORY=$(cd `dirname $0` && pwd) ROOT_DIR="${DIRECTORY}/build" RELEASE_DIR="${ROOT_DIR}/${CONFIGURATION}-iphoneos" PAYLOAD_DIR="${ROOT_DIR}/Payload" APP_DIR="${RELEASE_DIR}/${SCHEME_NAME}.app" IPA_DIR="${ROOT_DIR}/${SCHEME_NAME}.ipa" BROWSERSTACK_USERNAME="abdur6" BROWSERSTACK_ACCESS_KEY="idDAtzytnCPk23sebAyP" CUSTOM_ID=iOSApp"]
 			}
 		}
 	}}'
