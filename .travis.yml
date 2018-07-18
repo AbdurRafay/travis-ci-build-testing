@@ -4,14 +4,21 @@ branches:
   only:
     - master
 env:
-    - SDK_BRANCH=master WORKSPACE_DIR=iOSSDKe2e.xcworkspace SCHEME_NAME=iOSSDKe2e CONFIGURATION="Release" DESTINATION="generic/platform=iOS" DIRECTORY=$(cd `dirname $0` && pwd) ROOT_DIR="${DIRECTORY}/build" RELEASE_DIR="${ROOT_DIR}/${CONFIGURATION}-iphoneos" PAYLOAD_DIR="${ROOT_DIR}/Payload" APP_DIR="${RELEASE_DIR}/${SCHEME_NAME}.app" IPA_DIR="${ROOT_DIR}/${SCHEME_NAME}.ipa" BROWSERSTACK_USERNAME="abdur6" BROWSERSTACK_ACCESS_KEY="idDAtzytnCPk23sebAyP" CUSTOM_ID=iOSApp
+  matrix:
+    - WORKSPACE_DIR=iOSSDKe2e.xcworkspace SCHEME_NAME=iOSSDKe2e CONFIGURATION="Release"
+      DESTINATION="generic/platform=iOS" DIRECTORY=$(cd `dirname $0` && pwd) ROOT_DIR="${DIRECTORY}/build"
+      RELEASE_DIR="${ROOT_DIR}/${CONFIGURATION}-iphoneos" PAYLOAD_DIR="${ROOT_DIR}/Payload"
+      APP_DIR="${RELEASE_DIR}/${SCHEME_NAME}.app" IPA_DIR="${ROOT_DIR}/${SCHEME_NAME}.ipa"
+      CUSTOM_ID=objective-c-test-app
 before_install:
-    - gem install cocoapods                                             # Since Travis is not always on latest version
-    - sed -i '' "s~\'master\'~'${SDK_BRANCH}'~g" 'Podfile'
-    - pod install --repo-update
+  - gem install cocoapods
+  - sed -i '' "s~\'master\'~'${SDK_BRANCH}'~g" 'Podfile'
+  - pod install --repo-update
 script:
   - rm -rf $RELEASE_DIR
-  - xcodebuild -workspace $WORKSPACE_DIR -scheme $SCHEME_NAME -configuration $CONFIGURATION -destination $DESTINATION CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO SYMROOT=$ROOT_DIR clean build | xcpretty
+  - xcodebuild -workspace $WORKSPACE_DIR -scheme $SCHEME_NAME -configuration $CONFIGURATION
+    -destination $DESTINATION CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO SYMROOT=$ROOT_DIR
+    clean build | xcpretty
   - rm -rf $PAYLOAD_DIR
   - mkdir -p $PAYLOAD_DIR
   # Copy .app file from the build directory to the Payload directory
@@ -22,6 +29,7 @@ script:
   - rm -rf $RELEASE_DIR
   - rm -rf $PAYLOAD_DIR
   - echo "${IPA_DIR}"
-  - curl -u ${BROWSERSTACK_USERNAME}:${BROWSERSTACK_ACCESS_KEY} -X POST https://api-cloud.browserstack.com/app-automate/upload -F file=@${IPA_DIR} -F 'data={"custom_id":"'"${CUSTOM_ID}"'"}'
+  - curl -u ${BROWSERSTACK_USERNAME}:${BROWSERSTACK_ACCESS_KEY} -X POST https://api-cloud.browserstack.com/app-automate/upload
+    -F file=@${IPA_DIR} -F 'data={"custom_id":"'"${CUSTOM_ID}"'"}'
 after_success:
   - sleep 2                                                             # https://github.com/travis-ci/travis-ci/issues/4725
