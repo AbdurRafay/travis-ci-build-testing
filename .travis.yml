@@ -12,7 +12,7 @@ env:
       CUSTOM_ID=objective-c-test-app
 before_install:
   - gem install cocoapods
-  - sed -i '' "s~\'master\'~'${SDK_BRANCH}'~g" 'Podfile'
+  - sed -i '' "s~\'master\'~'$SDK_BRANCH'~g" 'Podfile'
   - pod install --repo-update
 script:
   - rm -rf $RELEASE_DIR
