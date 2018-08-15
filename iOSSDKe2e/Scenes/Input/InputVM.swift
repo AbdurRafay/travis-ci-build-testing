@@ -44,6 +44,7 @@ class InputVM : InputVMProtocol {
     }
     
     private func initOptimizely(success: ((InputVMProtocol) -> ())?, failure: ((InputVMProtocol, Error) -> ())?) {
+        OptimizelyWorker.shared.resetOptimizelyClient()
         guard OptimizelyWorker.shared.optimizelyClient != nil else {
             let error = ABError.validation(ErrorConstants.ErrorMsg.initialization)
             failure?(self, error)

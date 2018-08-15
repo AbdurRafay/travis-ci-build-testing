@@ -52,11 +52,15 @@ class InputVC: BaseVC, UITextFieldDelegate {
     // MARK: - viewModel closures
     
     func didParse(_ viewMOdel: InputVMProtocol) -> Void {
+        self.txtRequestURL.text = ""
+        self.tvRequestJSON.text = ""
         //self.router.route(to: InputRoute.output.rawValue, from: self, parameters: nil)
         self.tvResponseJSON?.text = viewModel.response()
     }
     
     func failedToParse(_ viewMOdel: InputVMProtocol, error: Error) -> Void {
+        self.txtRequestURL.text = ""
+        self.tvRequestJSON.text = ""
         self.toast(error: error)
     }
     
@@ -76,6 +80,9 @@ class InputVC: BaseVC, UITextFieldDelegate {
     override func configureUI() {
         self.navigationController?.navigationBar.isHidden = true
         //self.btnCallAPI.layer.cornerRadius = self.btnCallAPI.layer.bounds.height/2
+        let env = Bundle.main.infoDictionary?["NUM_RUNS"] as! String
+        print(env)
+        self.tvResponseJSON.text = "NUM_RUNS = " + env
     }
     
     override func bindUI() -> Void {

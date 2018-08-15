@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49m-oL-4di">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49m-oL-4di">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -119,7 +120,7 @@
                         <outlet property="tvRequestJSON" destination="WVV-a2-DHg" id="eNs-oj-Ont"/>
                         <outlet property="tvResponseJSON" destination="7Uh-na-ibw" id="F9c-Wd-EUO"/>
                         <outlet property="txtRequestURL" destination="ioX-hY-SoY" id="FqU-pV-vlD"/>
-                        <segue destination="lQt-yK-gX6" kind="show" id="UPa-2E-xta"/>
+                        <segue destination="lQt-yK-gX6" kind="show" identifier="InputVCToOutputVC" id="UPa-2E-xta"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PAd-1M-kD4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -146,64 +147,6 @@
                                 <color key="textColor" red="0.99991279840000002" green="1" blue="0.99988144639999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Request JSON" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BUV-Nr-shW">
-                                <rect key="frame" x="57" y="215" width="262" height="301.5"/>
-                                <accessibility key="accessibilityConfiguration" identifier="txtRequestJSON"/>
-                                <string key="text">{
-  "attributes": {
-    "language": "en-US",
-    "plan_type": "gold"
-  },
-  "context": {
-    "datafile": "empty_datafile.json",
-    "force_variations": [
-      {
-        "experiment_bucket_map": {
-          "experiment_1": {
-            "variation_id": "variation_2"
-          },
-          "experiment_2": {
-            "variation_id": "control"
-          }
-        },
-        "user_id": "userId1"
-      }
-    ],
-    "custom_event_dispatcher": "NoopEventDispatcher",
-    "dispatched_events": [
-      {}
-    ],
-    "user_profile_service": "NormalService",
-    "user_profiles": [
-      {
-        "experiment_bucket_map": {
-          "experiment_1": {
-            "variation_id": "variation_2"
-          },
-          "experiment_2": {
-            "variation_id": "control"
-          }
-        },
-        "user_id": "userId1"
-      }
-    ],
-    "with_listener": [
-      {
-        "type": "Activate",
-        "count": 0
-      }
-    ]
-  },
-  "experiment_key": "experiment_1",
-  "user_id": "userId1"
-}</string>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" textContentType="email"/>
-                                <connections>
-                                    <outlet property="delegate" destination="lQt-yK-gX6" id="gIg-dK-dhH"/>
-                                </connections>
-                            </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4IJ-rZ-Hp1">
                                 <rect key="frame" x="56.5" y="505" width="262" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -222,35 +165,20 @@
                         <color key="backgroundColor" red="0.080970220270000004" green="0.22364953160000001" blue="0.31650590899999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wOK-Dl-hb0" firstAttribute="height" secondItem="z4m-Bv-6zc" secondAttribute="height" multiplier="0.5" id="6eh-O3-fr1"/>
-                            <constraint firstItem="BUV-Nr-shW" firstAttribute="width" secondItem="z4m-Bv-6zc" secondAttribute="width" multiplier="0.7" id="7cO-Ky-uW1"/>
                             <constraint firstItem="wOK-Dl-hb0" firstAttribute="top" secondItem="dvh-eI-fVt" secondAttribute="bottom" constant="8" id="89m-r2-UvU"/>
-                            <constraint firstItem="BUV-Nr-shW" firstAttribute="height" secondItem="z4m-Bv-6zc" secondAttribute="height" multiplier="0.5" id="97Z-94-IEh"/>
-                            <constraint firstItem="BUV-Nr-shW" firstAttribute="centerY" secondItem="z4m-Bv-6zc" secondAttribute="centerY" id="D9A-JP-4Tk"/>
                             <constraint firstItem="wOK-Dl-hb0" firstAttribute="centerY" secondItem="z4m-Bv-6zc" secondAttribute="centerY" id="ESD-Sr-GEc"/>
-                            <constraint firstItem="BUV-Nr-shW" firstAttribute="top" secondItem="dvh-eI-fVt" secondAttribute="bottom" constant="8" symbolic="YES" id="GeB-yK-Fzv"/>
                             <constraint firstItem="wOK-Dl-hb0" firstAttribute="centerX" secondItem="z4m-Bv-6zc" secondAttribute="centerX" id="Hut-jz-a1K"/>
                             <constraint firstItem="4IJ-rZ-Hp1" firstAttribute="top" secondItem="wOK-Dl-hb0" secondAttribute="bottom" constant="-0.5" id="IqE-Xh-2bX"/>
                             <constraint firstItem="wOK-Dl-hb0" firstAttribute="centerX" secondItem="dvh-eI-fVt" secondAttribute="centerX" id="JsB-fz-zVp"/>
-                            <constraint firstItem="4IJ-rZ-Hp1" firstAttribute="width" secondItem="BUV-Nr-shW" secondAttribute="width" id="Nif-3j-gPG"/>
-                            <constraint firstItem="4IJ-rZ-Hp1" firstAttribute="top" secondItem="BUV-Nr-shW" secondAttribute="bottom" id="NrZ-Kt-LX0"/>
                             <constraint firstItem="OpN-bM-l20" firstAttribute="width" secondItem="z4m-Bv-6zc" secondAttribute="width" multiplier="0.2" id="PpQ-Qa-YdZ"/>
-                            <constraint firstItem="dvh-eI-fVt" firstAttribute="centerX" secondItem="BUV-Nr-shW" secondAttribute="centerX" id="TiQ-SK-Amp"/>
-                            <constraint firstItem="dvh-eI-fVt" firstAttribute="width" secondItem="BUV-Nr-shW" secondAttribute="width" id="VKD-ke-aAX"/>
                             <constraint firstItem="OpN-bM-l20" firstAttribute="centerY" secondItem="z4m-Bv-6zc" secondAttribute="centerY" multiplier="0.325" id="W0T-55-YDn"/>
                             <constraint firstItem="wOK-Dl-hb0" firstAttribute="width" secondItem="4IJ-rZ-Hp1" secondAttribute="width" id="aA4-3D-FAh"/>
                             <constraint firstItem="wOK-Dl-hb0" firstAttribute="centerX" secondItem="4IJ-rZ-Hp1" secondAttribute="centerX" id="heL-Sr-sfV"/>
-                            <constraint firstItem="BUV-Nr-shW" firstAttribute="centerX" secondItem="z4m-Bv-6zc" secondAttribute="centerX" id="kVQ-cv-cZa"/>
                             <constraint firstItem="wOK-Dl-hb0" firstAttribute="width" secondItem="dvh-eI-fVt" secondAttribute="width" id="kyM-Jb-3R2"/>
-                            <constraint firstItem="4IJ-rZ-Hp1" firstAttribute="centerX" secondItem="BUV-Nr-shW" secondAttribute="centerX" id="m8K-eO-mq1"/>
                             <constraint firstItem="OpN-bM-l20" firstAttribute="centerX" secondItem="z4m-Bv-6zc" secondAttribute="centerX" id="oMf-pO-Mbu"/>
                             <constraint firstItem="wOK-Dl-hb0" firstAttribute="width" secondItem="z4m-Bv-6zc" secondAttribute="width" multiplier="0.7" id="pbQ-0l-iAu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="z4m-Bv-6zc"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="BUV-Nr-shW"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="tZx-y0-H8H"/>
                     <connections>

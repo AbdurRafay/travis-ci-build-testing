@@ -30,7 +30,7 @@ private let keyEventTags            = "event_tags"
 
 class OptimizelyWorker {
     
-    static let shared = OptimizelyWorker()
+    static var shared = OptimizelyWorker()
     
     private init() { }
     
@@ -52,29 +52,30 @@ class OptimizelyWorker {
     
     // ---- Create the User Profile Service ----
     private lazy var userProfileService: OPTLYUserProfileService? = {
+        var userProfileService : OPTLYUserProfileService
         switch TestWorker.shared.userProfileService() {
         case normalService:
-            let userProfileService = OPTLYUserProfileServiceDefault()
-            if let profiles = TestWorker.shared.userProfiles() {
-                for profile in profiles {
-                    userProfileService.save(profile)
-                }
-            }
-            return userProfileService
+            userProfileService = OPTLYUserProfileServiceDefault()
         default:
-            return nil
+            userProfileService = OPTLYUserProfileServiceNoOp()
         }
+        if let profiles = TestWorker.shared.userProfiles() {
+            for profile in profiles {
+                userProfileService.save(profile)
+            }
+        }
+        return userProfileService
     }()
     
     
     // ---- Create the Manager ----
     private lazy var optimizelyManager: OPTLYManager? = {
-        let optimizelyManager: OPTLYManager? = OPTLYManager.init {(builder) in
+        let optimizelyManager: OPTLYManager? = OPTLYManager.init(builder: OPTLYManagerBuilder.init(block: { (builder) in
             builder!.datafile = self.datafile
             builder!.projectId = projectId
             builder!.eventDispatcher = self.eventDispatcher
             builder!.userProfileService = self.userProfileService
-        }
+        }))
         return optimizelyManager
     }()
     
@@ -82,6 +83,10 @@ class OptimizelyWorker {
         let optimizelyClient : OPTLYClient? = self.optimizelyManager?.initialize()
         return optimizelyClient
     }()
+    
+    func resetOptimizelyClient() -> Void {
+        OptimizelyWorker.shared = OptimizelyWorker()
+    }
     
     func setForcedVariations() -> Void {
         guard let forceVariationMaps = TestWorker.shared.forceVariations() else { return }
@@ -163,17 +168,17 @@ class OptimizelyWorker {
     
     func getFeatureVariableBoolean(featureKey: String?, variableKey: String?, userId: String?, attributes: [String : String]?) -> Bool? {
         let booleanVariable = self.optimizelyClient?.getFeatureVariableBoolean(featureKey, variableKey: variableKey, userId: userId, attributes: attributes)
-        return booleanVariable
+        return booleanVariable?.boolValue
     }
     
     func getFeatureVariableDouble(featureKey: String?, variableKey: String?, userId: String?, attributes: [String : String]?) -> Double? {
         let doubleVariable = self.optimizelyClient?.getFeatureVariableDouble(featureKey, variableKey: variableKey, userId: userId, attributes: attributes)
-        return doubleVariable
+        return doubleVariable?.doubleValue
     }
     
     func getFeatureVariableInteger(featureKey: String?, variableKey: String?, userId: String?, attributes: [String : String]?) -> Int32? {
         let integerVariable = self.optimizelyClient?.getFeatureVariableInteger(featureKey, variableKey: variableKey, userId: userId, attributes: attributes)
-        return integerVariable
+        return integerVariable?.int32Value
     }
     
     func getFeatureVariableString(featureKey: String?, variableKey: String?, userId: String?, attributes: [String : String]?) -> String? {

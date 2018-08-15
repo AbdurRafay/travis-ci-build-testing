@@ -1,36 +1,34 @@
-#!/bin/sh
+# Set BROWSERSTACK_USERNAME & BROWSERSTACK_ACCESS_KEY variables before running this script
 
-# WORKSPACE_DIR=$1	 			#"testApp/iOSSDKe2e/iOSSDKe2e.xcworkspace"
-# SCHEME_NAME=$2 					#"iOSSDKe2e"
-# CONFIGURATION="Release"
-# DESTINATION="generic/platform=iOS"
-# DIRECTORY=$(cd `dirname $0` && pwd)
-# ROOT_DIR="${DIRECTORY}/build"
-# RELEASE_DIR="${ROOT_DIR}/${CONFIGURATION}-iphoneos"
-# PAYLOAD_DIR="${ROOT_DIR}/Payload"
-# APP_DIR="${RELEASE_DIR}/${SCHEME_NAME}.app"
-# IPA_DIR="${ROOT_DIR}/${SCHEME_NAME}.ipa"
+SCHEME_NAME="iOSSDKe2e"
+CONFIGURATION="Release"
+DESTINATION="generic/platform=iOS"
+DIRECTORY=$(cd `dirname $0` && pwd)
+ROOT_DIR="$(pwd)/build"
+RELEASE_DIR="${ROOT_DIR}/${CONFIGURATION}-iphoneos"
+PAYLOAD_DIR="${ROOT_DIR}/Payload"
+APP_DIR="${RELEASE_DIR}/${SCHEME_NAME}.app"
+IPA_DIR="${ROOT_DIR}/${SCHEME_NAME}.ipa"
 
-# rm -rf $RELEASE_DIR
+CUSTOM_ID=objective-c-test-app
 
-# xcodebuild -workspace $WORKSPACE_DIR -scheme $SCHEME_NAME -configuration $CONFIGURATION -destination $DESTINATION CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO SYMROOT=$ROOT_DIR clean build | xcpretty
+rm -rf $RELEASE_DIR
+pod install --repo-update
+xcodebuild -workspace iOSSDKe2e.xcworkspace -scheme iOSSDKe2e -configuration $CONFIGURATION -destination $DESTINATION CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO SYMROOT=$(pwd)/build clean build
 
-# rm -rf $PAYLOAD_DIR
-# mkdir -p $PAYLOAD_DIR
+rm -rf $PAYLOAD_DIR
+mkdir -p $PAYLOAD_DIR
 
 # # # Copy .app file from the build directory to the Payload directory
-# cp -R $APP_DIR $PAYLOAD_DIR
+cp -R $APP_DIR $PAYLOAD_DIR
 
-# cd $ROOT_DIR
-# zip -r -X ${SCHEME_NAME}.ipa "Payload"
-# cd $DIRECTORY
+cd $ROOT_DIR
+zip -r -X ${SCHEME_NAME}.ipa "Payload"
+cd $DIRECTORY
 
-# rm -rf $RELEASE_DIR
-# rm -rf $PAYLOAD_DIR
+rm -rf $RELEASE_DIR
+rm -rf $PAYLOAD_DIR
 
-# echo "${IPA_DIR}"
+echo "${IPA_DIR}"
 
-IPA_DIR=$1
-CUSTOM_ID=$2
-
-curl -u "abdur6:idDAtzytnCPk23sebAyP" -X POST "https://api-cloud.browserstack.com/app-automate/upload" -F "file=@${IPA_DIR}" -F 'data={"custom_id": "${CUSTOM_ID}"}'
+curl -u "${BROWSERSTACK_USERNAME}:${BROWSERSTACK_ACCESS_KEY}" -X POST https://api-cloud.browserstack.com/app-automate/upload -F file=@"${IPA_DIR}" -F 'data={"custom_id":"'"${CUSTOM_ID}"'"}'

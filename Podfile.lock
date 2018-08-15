@@ -1,17 +1,17 @@
 PODS:
-  - OptimizelySDKCore (2.0.2-beta2)
-  - OptimizelySDKDatafileManager (2.0.2-beta2):
-    - OptimizelySDKShared (= 2.0.2-beta2)
-  - OptimizelySDKEventDispatcher (2.0.2-beta2):
-    - OptimizelySDKShared (= 2.0.2-beta2)
-  - OptimizelySDKiOS (2.0.2-beta2):
-    - OptimizelySDKDatafileManager (= 2.0.2-beta2)
-    - OptimizelySDKEventDispatcher (= 2.0.2-beta2)
-    - OptimizelySDKUserProfileService (= 2.0.2-beta2)
-  - OptimizelySDKShared (2.0.2-beta2):
-    - OptimizelySDKCore (= 2.0.2-beta2)
-  - OptimizelySDKUserProfileService (2.0.2-beta2):
-    - OptimizelySDKShared (= 2.0.2-beta2)
+  - OptimizelySDKCore (2.1.0)
+  - OptimizelySDKDatafileManager (2.1.0):
+    - OptimizelySDKShared (= 2.1.0)
+  - OptimizelySDKEventDispatcher (2.1.0):
+    - OptimizelySDKShared (= 2.1.0)
+  - OptimizelySDKiOS (2.1.0):
+    - OptimizelySDKDatafileManager (= 2.1.0)
+    - OptimizelySDKEventDispatcher (= 2.1.0)
+    - OptimizelySDKUserProfileService (= 2.1.0)
+  - OptimizelySDKShared (2.1.0):
+    - OptimizelySDKCore (= 2.1.0)
+  - OptimizelySDKUserProfileService (2.1.0):
+    - OptimizelySDKShared (= 2.1.0)
 
 DEPENDENCIES:
   - OptimizelySDKiOS (from `https://github.com/optimizely/objective-c-sdk.git`, branch `master`)
@@ -31,16 +31,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   OptimizelySDKiOS:
-    :commit: 01769db055b503783826b3a37281d7bf36632d7c
+    :commit: ac9e2bc300695761c73e67db253a9430887bab9a
     :git: https://github.com/optimizely/objective-c-sdk.git
 
 SPEC CHECKSUMS:
-  OptimizelySDKCore: 35b37e74a4405e18cc2a057cce3363fd9267aada
-  OptimizelySDKDatafileManager: 700b83510571a831e592e5ea92569b3e107eea34
-  OptimizelySDKEventDispatcher: bdc0784c2c42b5bae601bd631806bc21a6b4cd94
-  OptimizelySDKiOS: 2dd665810a4f31fe954df9b0509e90313833446a
-  OptimizelySDKShared: f63f3d3bf19b1bdb57c31f6c6b42c0e0dfe71883
-  OptimizelySDKUserProfileService: b3eceee088b57a04505dc91fa5eed93c1f141b7a
+  OptimizelySDKCore: e03962fcf6370cb1a29bccbd0d656f889f37846a
+  OptimizelySDKDatafileManager: 7e768460affb0520baa5bd1ca12fd5749aae78b0
+  OptimizelySDKEventDispatcher: f529a7303bc1c873874dcaed41e348f03075c9c9
+  OptimizelySDKiOS: ffa53f777100a26fe2648d1338d5d8402618a529
+  OptimizelySDKShared: 40dfb3dc9938b81559e1aafc72ab178a40c7b31b
+  OptimizelySDKUserProfileService: c1e32014ac4624e66bb3abd973209f7f173fa027
 
 PODFILE CHECKSUM: fa2f2441e3eb05c9856ecb9d9195aa2e925b550b
 

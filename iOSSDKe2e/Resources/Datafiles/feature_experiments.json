@@ -1,327 +1,338 @@
 {
-  "accountId": "2692180134",
+  "accountId": "4498140865",
   "anonymizeIP": true,
   "attributes": [
     {
-      "id": "2689320097",
+      "id": "4479339779",
       "key": "customattr"
     }
   ],
   "audiences": [
     {
       "conditions": "[\"and\", {\"type\": \"custom_attribute\", \"name\": \"customattr\", \"value\": \"yes\"}]",
-      "id": "2698010096",
+      "id": "4481190212",
       "name": "feature_audience"
     }
   ],
-  "events": [],
+  "botFiltering": false,
+  "events": [
+    {
+      "experimentIds": [
+        "4490030094"
+      ],
+      "id": "4492830297",
+      "key": "winning"
+    }
+  ],
   "experiments": [
-    {
-      "audienceIds": [],
-      "forcedVariations": {},
-      "id": "2693450106",
-      "key": "feature_running_noalloc_exp",
-      "layerId": "2694510084",
-      "status": "Running",
-      "trafficAllocation": [
-        {
-          "endOfRange": 0,
-          "entityId": "2694440079"
-        },
-        {
-          "endOfRange": 0,
-          "entityId": "2689320096"
-        }
-      ],
-      "variations": [
-        {
-          "featureEnabled": false,
-          "id": "2694440079",
-          "key": "var_1",
-          "variables": []
-        },
-        {
-          "featureEnabled": true,
-          "id": "2689320096",
-          "key": "var_2",
-          "variables": []
-        }
-      ]
-    },
-    {
-      "audienceIds": [],
-      "forcedVariations": {},
-      "id": "2693690102",
-      "key": "feature_draft_exp",
-      "layerId": "2695430110",
-      "status": "Not started",
-      "trafficAllocation": [
-        {
-          "endOfRange": 10000,
-          "entityId": "2689660107"
-        }
-      ],
-      "variations": [
-        {
-          "featureEnabled": false,
-          "id": "2688920112",
-          "key": "var_1",
-          "variables": []
-        },
-        {
-          "featureEnabled": true,
-          "id": "2689660107",
-          "key": "var_2",
-          "variables": []
-        }
-      ]
-    },
-    {
-      "audienceIds": [],
-      "forcedVariations": {},
-      "id": "2696050076",
-      "key": "feature_paused_exp",
-      "layerId": "2690850095",
-      "status": "Paused",
-      "trafficAllocation": [
-        {
-          "endOfRange": 10000,
-          "entityId": "2687470089"
-        }
-      ],
-      "variations": [
-        {
-          "featureEnabled": false,
-          "id": "2686700046",
-          "key": "var_1",
-          "variables": []
-        },
-        {
-          "featureEnabled": true,
-          "id": "2687470089",
-          "key": "var_2",
-          "variables": []
-        }
-      ]
-    },
-    {
-      "audienceIds": [],
-      "forcedVariations": {},
-      "id": "2696300011",
-      "key": "feature_running_disabled_exp",
-      "layerId": "2686700047",
-      "status": "Running",
-      "trafficAllocation": [
-        {
-          "endOfRange": 10000,
-          "entityId": "2690680093"
-        }
-      ],
-      "variations": [
-        {
-          "featureEnabled": false,
-          "id": "2690680093",
-          "key": "disabled",
-          "variables": []
-        },
-        {
-          "featureEnabled": true,
-          "id": "2691780025",
-          "key": "enabled",
-          "variables": []
-        }
-      ]
-    },
-    {
-      "audienceIds": [
-        "2698010096"
-      ],
-      "forcedVariations": {},
-      "id": "2697120115",
-      "key": "feature_targeted_exp",
-      "layerId": "2699070133",
-      "status": "Running",
-      "trafficAllocation": [
-        {
-          "endOfRange": 10000,
-          "entityId": "2695500030"
-        }
-      ],
-      "variations": [
-        {
-          "featureEnabled": false,
-          "id": "2693120246",
-          "key": "var_1",
-          "variables": []
-        },
-        {
-          "featureEnabled": true,
-          "id": "2695500030",
-          "key": "var_2",
-          "variables": []
-        }
-      ]
-    },
     {
       "audienceIds": [],
       "forcedVariations": {
         "feature_disabled_user": "var_1",
         "feature_enabled_user": "var_2"
       },
-      "id": "2698060076",
+      "id": "4490030094",
       "key": "feature_running_exp",
-      "layerId": "2696280072",
+      "layerId": "4479300526",
       "status": "Running",
       "trafficAllocation": [
         {
           "endOfRange": 10000,
-          "entityId": "2688510106"
+          "entityId": "4505289588"
         }
       ],
       "variations": [
         {
           "featureEnabled": false,
-          "id": "2693550077",
+          "id": "4485891132",
           "key": "var_1",
           "variables": []
         },
         {
           "featureEnabled": true,
-          "id": "2688510106",
+          "id": "4505289588",
           "key": "var_2",
+          "variables": [
+            {
+              "id": "4569748135",
+              "value": "s"
+            },
+            {
+              "id": "4567738115",
+              "value": "10.5"
+            },
+            {
+              "id": "4538479134",
+              "value": "3"
+            },
+            {
+              "id": "4492890085",
+              "value": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audienceIds": [],
+      "forcedVariations": {},
+      "id": "4493830384",
+      "key": "feature_running_disabled_exp",
+      "layerId": "4525908865",
+      "status": "Running",
+      "trafficAllocation": [
+        {
+          "endOfRange": 10000,
+          "entityId": "4489910591"
+        }
+      ],
+      "variations": [
+        {
+          "featureEnabled": false,
+          "id": "4489910591",
+          "key": "disabled",
           "variables": []
+        },
+        {
+          "featureEnabled": true,
+          "id": "4563988199",
+          "key": "enabled",
+          "variables": [
+            {
+              "id": "4546208797",
+              "value": "10.5"
+            },
+            {
+              "id": "4495960116",
+              "value": "3"
+            },
+            {
+              "id": "4555998838",
+              "value": "true"
+            },
+            {
+              "id": "4490040011",
+              "value": "s"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audienceIds": [],
+      "forcedVariations": {},
+      "id": "4509498956",
+      "key": "feature_draft_exp",
+      "layerId": "4483100973",
+      "status": "Not started",
+      "trafficAllocation": [
+        {
+          "endOfRange": 10000,
+          "entityId": "4495840247"
+        }
+      ],
+      "variations": [
+        {
+          "featureEnabled": false,
+          "id": "4495970603",
+          "key": "var_1",
+          "variables": []
+        },
+        {
+          "featureEnabled": true,
+          "id": "4495840247",
+          "key": "var_2",
+          "variables": [
+            {
+              "id": "4546178885",
+              "value": "3"
+            },
+            {
+              "id": "4537628005",
+              "value": "s"
+            },
+            {
+              "id": "4525899536",
+              "value": "10.5"
+            },
+            {
+              "id": "4558848224",
+              "value": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audienceIds": [],
+      "forcedVariations": {},
+      "id": "4536589504",
+      "key": "feature_running_noalloc_exp",
+      "layerId": "4485959994",
+      "status": "Running",
+      "trafficAllocation": [
+        {
+          "endOfRange": 0,
+          "entityId": "4481230842"
+        },
+        {
+          "endOfRange": 0,
+          "entityId": "4501980176"
+        }
+      ],
+      "variations": [
+        {
+          "featureEnabled": false,
+          "id": "4481230842",
+          "key": "var_1",
+          "variables": []
+        },
+        {
+          "featureEnabled": true,
+          "id": "4501980176",
+          "key": "var_2",
+          "variables": [
+            {
+              "id": "4546208799",
+              "value": "10.5"
+            },
+            {
+              "id": "4515318976",
+              "value": "3"
+            },
+            {
+              "id": "4517249344",
+              "value": "s"
+            },
+            {
+              "id": "4527918768",
+              "value": "true"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audienceIds": [
+        "4481190212"
+      ],
+      "forcedVariations": {},
+      "id": "4541769067",
+      "key": "feature_targeted_exp",
+      "layerId": "4491259575",
+      "status": "Running",
+      "trafficAllocation": [
+        {
+          "endOfRange": 10000,
+          "entityId": "4499780444"
+        }
+      ],
+      "variations": [
+        {
+          "featureEnabled": false,
+          "id": "4482880842",
+          "key": "var_1",
+          "variables": []
+        },
+        {
+          "featureEnabled": true,
+          "id": "4499780444",
+          "key": "var_2",
+          "variables": [
+            {
+              "id": "4488060488",
+              "value": "s"
+            },
+            {
+              "id": "4479459944",
+              "value": "true"
+            },
+            {
+              "id": "4537628008",
+              "value": "3"
+            },
+            {
+              "id": "4507860386",
+              "value": "10.5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "audienceIds": [],
+      "forcedVariations": {},
+      "id": "4497249369",
+      "key": "feature_paused_exp",
+      "layerId": "4557939413",
+      "status": "Paused",
+      "trafficAllocation": [
+        {
+          "endOfRange": 10000,
+          "entityId": "4481120262"
+        }
+      ],
+      "variations": [
+        {
+          "featureEnabled": false,
+          "id": "4555998834",
+          "key": "var_1",
+          "variables": []
+        },
+        {
+          "featureEnabled": true,
+          "id": "4481120262",
+          "key": "var_2",
+          "variables": [
+            {
+              "id": "4499870693",
+              "value": "3"
+            },
+            {
+              "id": "4544489668",
+              "value": "10.5"
+            },
+            {
+              "id": "4491910813",
+              "value": "s"
+            },
+            {
+              "id": "4479290059",
+              "value": "true"
+            }
+          ]
         }
       ]
     }
   ],
   "featureFlags": [
     {
-      "experimentIds": [
-        "2696300011"
-      ],
-      "id": "2686660203",
-      "key": "feature_running_disabled",
-      "rolloutId": "",
-      "variables": [
-        {
-          "defaultValue": "10.5",
-          "id": "2685840097",
-          "key": "d",
-          "type": "double"
-        },
-        {
-          "defaultValue": "true",
-          "id": "2691640036",
-          "key": "b",
-          "type": "boolean"
-        },
-        {
-          "defaultValue": "3",
-          "id": "2695410105",
-          "key": "i",
-          "type": "integer"
-        },
-        {
-          "defaultValue": "s",
-          "id": "2695560076",
-          "key": "s",
-          "type": "string"
-        }
-      ]
-    },
-    {
-      "experimentIds": [
-        "2697120115"
-      ],
-      "id": "2687680095",
-      "key": "feature_targeted",
-      "rolloutId": "",
-      "variables": [
-        {
-          "defaultValue": "10.5",
-          "id": "2687480071",
-          "key": "d",
-          "type": "double"
-        },
-        {
-          "defaultValue": "3",
-          "id": "2692140072",
-          "key": "i",
-          "type": "integer"
-        },
-        {
-          "defaultValue": "s",
-          "id": "2694210077",
-          "key": "s",
-          "type": "string"
-        },
-        {
-          "defaultValue": "true",
-          "id": "2698020042",
-          "key": "b",
-          "type": "boolean"
-        }
-      ]
-    },
-    {
       "experimentIds": [],
-      "id": "2687850054",
+      "id": "4482920077",
       "key": "feature_archived",
       "rolloutId": "",
       "variables": [
         {
           "defaultValue": "10.5",
-          "id": "2687560113",
+          "id": "4479540599",
           "key": "d",
           "type": "double"
         },
         {
           "defaultValue": "true",
-          "id": "2689520084",
+          "id": "4479610038",
           "key": "b",
           "type": "boolean"
         },
         {
-          "defaultValue": "3",
-          "id": "2693810092",
-          "key": "i",
-          "type": "integer"
-        },
-        {
           "defaultValue": "s",
-          "id": "2695000081",
-          "key": "s",
-          "type": "string"
-        }
-      ]
-    },
-    {
-      "experimentIds": [],
-      "id": "2689440124",
-      "key": "feature_draft",
-      "rolloutId": "",
-      "variables": [
-        {
-          "defaultValue": "s",
-          "id": "2687940057",
+          "id": "4481350386",
           "key": "s",
           "type": "string"
         },
         {
-          "defaultValue": "true",
-          "id": "2688530062",
-          "key": "b",
-          "type": "boolean"
-        },
-        {
-          "defaultValue": "10.5",
-          "id": "2691350171",
-          "key": "d",
-          "type": "double"
-        },
-        {
           "defaultValue": "3",
-          "id": "2692400117",
+          "id": "4501759920",
           "key": "i",
           "type": "integer"
         }
@@ -329,33 +340,33 @@
     },
     {
       "experimentIds": [
-        "2698060076"
+        "4490030094"
       ],
-      "id": "2692620110",
+      "id": "4484780867",
       "key": "feature_running",
       "rolloutId": "",
       "variables": [
         {
+          "defaultValue": "true",
+          "id": "4492890085",
+          "key": "b",
+          "type": "boolean"
+        },
+        {
           "defaultValue": "3",
-          "id": "2687470094",
+          "id": "4538479134",
           "key": "i",
           "type": "integer"
         },
         {
           "defaultValue": "10.5",
-          "id": "2689280164",
+          "id": "4567738115",
           "key": "d",
           "type": "double"
         },
         {
-          "defaultValue": "true",
-          "id": "2689660111",
-          "key": "b",
-          "type": "boolean"
-        },
-        {
           "defaultValue": "s",
-          "id": "2696150065",
+          "id": "4569748135",
           "key": "s",
           "type": "string"
         }
@@ -363,65 +374,165 @@
     },
     {
       "experimentIds": [
-        "2693450106"
+        "4493830384"
       ],
-      "id": "2694070172",
-      "key": "feature_running_noalloc",
+      "id": "4491940815",
+      "key": "feature_running_disabled",
       "rolloutId": "",
       "variables": [
         {
-          "defaultValue": "3",
-          "id": "2692300172",
-          "key": "i",
-          "type": "integer"
-        },
-        {
           "defaultValue": "s",
-          "id": "2693330115",
+          "id": "4490040011",
           "key": "s",
           "type": "string"
         },
         {
-          "defaultValue": "true",
-          "id": "2693370111",
-          "key": "b",
-          "type": "boolean"
+          "defaultValue": "3",
+          "id": "4495960116",
+          "key": "i",
+          "type": "integer"
         },
         {
           "defaultValue": "10.5",
-          "id": "2693830051",
+          "id": "4546208797",
           "key": "d",
           "type": "double"
+        },
+        {
+          "defaultValue": "true",
+          "id": "4555998838",
+          "key": "b",
+          "type": "boolean"
         }
       ]
     },
     {
       "experimentIds": [],
-      "id": "2698110055",
+      "id": "4512829815",
       "key": "feature_paused",
       "rolloutId": "",
       "variables": [
         {
           "defaultValue": "true",
-          "id": "2684880100",
+          "id": "4479290059",
           "key": "b",
           "type": "boolean"
         },
         {
+          "defaultValue": "s",
+          "id": "4491910813",
+          "key": "s",
+          "type": "string"
+        },
+        {
           "defaultValue": "3",
-          "id": "2692900123",
+          "id": "4499870693",
           "key": "i",
           "type": "integer"
         },
         {
+          "defaultValue": "10.5",
+          "id": "4544489668",
+          "key": "d",
+          "type": "double"
+        }
+      ]
+    },
+    {
+      "experimentIds": [],
+      "id": "4518250598",
+      "key": "feature_draft",
+      "rolloutId": "",
+      "variables": [
+        {
+          "defaultValue": "10.5",
+          "id": "4525899536",
+          "key": "d",
+          "type": "double"
+        },
+        {
           "defaultValue": "s",
-          "id": "2694500121",
+          "id": "4537628005",
+          "key": "s",
+          "type": "string"
+        },
+        {
+          "defaultValue": "3",
+          "id": "4546178885",
+          "key": "i",
+          "type": "integer"
+        },
+        {
+          "defaultValue": "true",
+          "id": "4558848224",
+          "key": "b",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "experimentIds": [
+        "4541769067"
+      ],
+      "id": "4562058347",
+      "key": "feature_targeted",
+      "rolloutId": "",
+      "variables": [
+        {
+          "defaultValue": "true",
+          "id": "4479459944",
+          "key": "b",
+          "type": "boolean"
+        },
+        {
+          "defaultValue": "s",
+          "id": "4488060488",
           "key": "s",
           "type": "string"
         },
         {
           "defaultValue": "10.5",
-          "id": "2695100075",
+          "id": "4507860386",
+          "key": "d",
+          "type": "double"
+        },
+        {
+          "defaultValue": "3",
+          "id": "4537628008",
+          "key": "i",
+          "type": "integer"
+        }
+      ]
+    },
+    {
+      "experimentIds": [
+        "4536589504"
+      ],
+      "id": "4562638153",
+      "key": "feature_running_noalloc",
+      "rolloutId": "",
+      "variables": [
+        {
+          "defaultValue": "3",
+          "id": "4515318976",
+          "key": "i",
+          "type": "integer"
+        },
+        {
+          "defaultValue": "s",
+          "id": "4517249344",
+          "key": "s",
+          "type": "string"
+        },
+        {
+          "defaultValue": "true",
+          "id": "4527918768",
+          "key": "b",
+          "type": "boolean"
+        },
+        {
+          "defaultValue": "10.5",
+          "id": "4546208799",
           "key": "d",
           "type": "double"
         }
@@ -429,8 +540,8 @@
     }
   ],
   "groups": [],
-  "projectId": "2692180134",
-  "revision": "34",
+  "projectId": "4498140865",
+  "revision": "37",
   "rollouts": [],
   "variables": [],
   "version": "4"
